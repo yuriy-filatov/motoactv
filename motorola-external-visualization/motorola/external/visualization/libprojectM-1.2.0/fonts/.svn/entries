@@ -1,0 +1,57 @@
+8
+
+dir
+1028
+https://projectm.svn.sourceforge.net/svnroot/projectm/trunk/fonts
+https://projectm.svn.sourceforge.net/svnroot/projectm
+
+
+
+2007-06-13T02:34:15.677101Z
+152
+w1z7ard
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+6778bc44-b910-0410-a7a0-be141de4315d
+
+VeraMono.ttf
+file
+
+
+
+
+2008-06-12T03:40:10.000000Z
+37d8aff129ecd7d3fc495b7239f834db
+2007-06-13T02:34:15.677101Z
+152
+w1z7ard
+has-props
+
+Vera.ttf
+file
+
+
+
+
+2008-06-12T03:40:10.000000Z
+785d2fd45984c6548763ae6702d83e20
+2007-06-13T02:34:15.677101Z
+152
+w1z7ard
+has-props
+
+CVS
+dir
+

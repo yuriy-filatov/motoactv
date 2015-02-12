@@ -1,0 +1,84 @@
+/*
+ * rest-ld-script: ld (linker) script for Linux Boot Loader (lbl).
+ *                 Heavily inspired by the Linux kernel linker scripts.
+ *
+ * Copyright (C) 1999 2000 2001 Erik Mouw (J.A.K.Mouw@its.tudelft.nl) and
+ *
+ * Copyright 2006 Motorola, Inc.
+ *
+ * $Id: rest-ld-script,v 1.2 2002/01/07 15:00:15 erikm Exp $
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *
+ */
+
+/* Date         Author          Comment
+ * ===========  ==============  ==============================================
+ * 04-Oct-2006  Motorola        Removed BLOB comments and unused sections.
+ */
+
+OUTPUT_FORMAT("elf32-littlearm", "elf32-littlearm", "elf32-littlearm")
+OUTPUT_ARCH(arm)
+ENTRY(_trampoline)
+SECTIONS
+{
+	. = 0x0;
+
+	. = ALIGN(4);
+	.text : {
+		__text_start = .;
+		*(.text)
+		__text_end = .;
+	}
+
+	. = ALIGN(4);
+	.rodata : {
+		__rodata_start = .;
+		*(.rodata)
+		__rodata_end = .;
+	}
+
+	. = ALIGN(4);
+	.data : {
+		__data_start = .;
+		*(.data)
+		__data_end = .;
+	}
+
+	. = ALIGN(4);
+	.got            : { *(.got) }
+	.got.plt        : { *(.got.plt) }
+	.dynamic        : { *(.dynamic) }
+        .hash           : { *(.hash) }
+        .dynsym         : { *(.dynsym) }
+        .dynstr         : { *(.dynstr) }
+        .rel.dyn        : { *(.rel.dyn) }
+        .rel.plt        : { *(.rel.plt) }
+
+	/* the BSS section should *always* be the last section */
+	. = ALIGN(4);
+	.bss : {
+		__bss_start = .;
+		/* first the real BSS data */
+		*(.bss) 
+
+		/* and next the stack */
+		. = ALIGN(4);
+		__stack_start = .;
+		*(.stack)
+		__stack_end = .;
+		__bss_end = .;
+	}
+}

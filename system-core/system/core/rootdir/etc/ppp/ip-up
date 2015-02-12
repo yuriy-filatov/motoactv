@@ -1,0 +1,49 @@
+#!/system/bin/sh
+# When the ppp link comes up, this script is called with the following
+# parameters
+#       $1      the interface name used by pppd (e.g. ppp3)
+#       $2      the tty device name
+#       $3      the tty device speed
+#       $4      the local IP address for the interface
+#       $5      the remote IP address
+#       $6      the parameter specified by the 'ipparam' option to pppd
+
+case "$6" in
+#handle DUN
+        dun)
+                exit 0
+                ;;
+        *)
+esac
+
+# Use interface name if linkname is not available
+
+/system/bin/setprop "net.dns1" "$DNS1"
+/system/bin/setprop "net.dns2" "$DNS2"
+
+# Retrieve the default gateway from /proc/net/route
+RTAB=`cat /proc/net/route`
+flag=-1; i=0;
+for l in $RTAB; do
+    if (exp flag==1) then DGW=$l; flag=0; fi;
+    if (exp i%11 == 1) then
+        if (exp $l=="00000000") then flag=1; fi;
+    fi;
+    i=`exp i+1`;
+done
+FH=${DGW%????}
+LH=${DGW#????}
+A=`exp 0x${LH#??}`
+B=`exp 0x${LH%??}`
+C=`exp 0x${FH#??}`
+D=`exp 0x${FH%??}`
+GATEWAY="$A.$B.$C.$D"
+VPNSERVER=`getprop "net.vpn.server_ip"`
+
+# Protect the route to vpn server
+/system/bin/route add -net $VPNSERVER netmask 255.255.255.255 gw $GATEWAY
+
+# Route all traffic to vpn connection
+/system/bin/route add -net 0.0.0.0 netmask 128.0.0.0 gw $IPREMOTE
+/system/bin/route add -net 128.0.0.0 netmask 128.0.0.0 gw $IPREMOTE
+

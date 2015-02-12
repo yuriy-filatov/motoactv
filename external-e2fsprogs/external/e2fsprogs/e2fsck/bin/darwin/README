@@ -1,0 +1,4 @@
+The binary available in this folder is used for Mac OS builds only (v.1.41.12).
+It was done under CR IKMAIN-1686 to fix Segmentation Fault issue experienced on Mac computers.
+As soon as we have update of e2fsprogs from Google (expected in Gingerbread), it needs to be
+reverted to the state how it worked before (i.e., building e2fsck from source).

@@ -1,0 +1,58 @@
+LOCAL_PATH := $(call my-dir)
+include $(CLEAR_VARS)
+
+#American English
+ifneq ($(findstring en_US,$(PRODUCT_LOCALES)),)
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/en_US/en_US.dic:system/etc/spellchecker/en_US.dic \
+    $(LOCAL_PATH)/en_US/en_US.aff:system/etc/spellchecker/en_US.aff
+endif
+
+#British
+ifneq ($(findstring en_GB,$(PRODUCT_LOCALES)),)
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/en_GB/en_GB.dic:system/etc/spellchecker/en_GB.dic \
+    $(LOCAL_PATH)/en_GB/en_GB.aff:system/etc/spellchecker/en_GB.aff
+endif
+
+#Spanish
+ifneq ($(findstring es,$(PRODUCT_LOCALES)),)
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/es_ES/es_ES.dic:system/etc/spellchecker/es_ES.dic \
+    $(LOCAL_PATH)/es_ES/es_ES.aff:system/etc/spellchecker/es_ES.aff
+endif
+
+#Italian
+ifneq ($(findstring it,$(PRODUCT_LOCALES)),)
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/it_IT/it_IT.dic:system/etc/spellchecker/it_IT.dic \
+    $(LOCAL_PATH)/it_IT/it_IT.aff:system/etc/spellchecker/it_IT.aff
+endif
+
+#French
+ifneq ($(findstring fr,$(PRODUCT_LOCALES)),)
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/fr/fr.dic:system/etc/spellchecker/fr.dic \
+    $(LOCAL_PATH)/fr/fr.aff:system/etc/spellchecker/fr.aff
+endif
+
+#German
+ifneq ($(findstring de,$(PRODUCT_LOCALES)),)
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/de_DE_frami/de_DE_frami.dic:system/etc/spellchecker/de_DE_frami.dic \
+    $(LOCAL_PATH)/de_DE_frami/de_DE_frami.aff:system/etc/spellchecker/de_DE_frami.aff
+endif
+
+#Portuguese
+ifneq ($(findstring pt_PT,$(PRODUCT_LOCALES)),)
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/pt_PT/pt_PT.dic:system/etc/spellchecker/pt_PT.dic \
+    $(LOCAL_PATH)/pt_PT/pt_PT.aff:system/etc/spellchecker/pt_PT.aff
+endif
+
+#Brazilian Portuguese
+ifneq ($(findstring pt_BR,$(PRODUCT_LOCALES)),)
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/pt_BR/pt_BR.dic:system/etc/spellchecker/pt_BR.dic \
+    $(LOCAL_PATH)/pt_BR/pt_BR.aff:system/etc/spellchecker/pt_BR.aff
+endif

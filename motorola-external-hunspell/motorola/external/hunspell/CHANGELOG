@@ -1,0 +1,5 @@
+version 1.0
+  * Motorola only uses the engine of hunspell which is under the path: src/hunspell in the original distribution.
+  * Add JNI API files: 
+    ./tools/jhunCheck.cxx
+    ./tools/com_mot_android_HunChecker.h
